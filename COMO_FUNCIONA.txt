@@ -1,0 +1,55 @@
+============================================================
+  DETECTOR DE POSTURA CORPORAL
+  Visao Computacional com OpenCV + MediaPipe
+============================================================
+
+O QUE O PROJETO FAZ
+--------------------
+O programa acessa a webcam em tempo real e analisa a postura
+corporal da pessoa usando inteligencia artificial. Ele detecta
+os pontos-chave do corpo (landmarks) e verifica se a postura
+esta correta ou se ha problemas.
+
+O QUE ELE DETECTA
+------------------
+- Inclinacao lateral da cabeca
+- Ombros desnivelados
+- Cabeca projetada para frente ("tech neck")
+- Curvatura lateral da coluna
+
+COMO LER A TELA
+---------------
+- Esqueleto VERDE: segmento do corpo sem problemas
+- Esqueleto VERMELHO: segmento com problema detectado
+- Painel esquerdo: barras mostrando o nivel de cada metrica
+- Canto superior direito:
+    BOA POSTURA    = nenhum problema
+    POSTURA REGULAR = 1 problema
+    POSTURA RUIM    = 2 ou mais problemas
+- Borda vermelha piscando: alerta visual de postura ruim
+
+TECNOLOGIAS USADAS
+-------------------
+- Python 3.11
+- OpenCV: captura da camera e renderizacao visual
+- MediaPipe Pose: modelo de IA que detecta 33 pontos do corpo
+- NumPy: calculos de angulos e geometria
+
+COMO RODAR
+----------
+1. Primeira vez: clique duas vezes em INICIAR.bat
+   (instala tudo e ja abre o programa)
+
+2. Demais vezes: clique duas vezes em RODAR.bat
+   (abre direto, sem reinstalar nada)
+
+3. Para encerrar: pressione a tecla Q na janela da camera
+
+DICAS PARA MELHOR DETECCAO
+---------------------------
+- Fique a 1 ou 2 metros da camera
+- Garanta boa iluminacao no rosto e tronco
+- Posicione a camera na altura do peito ou levemente acima
+- Evite fundo muito parecido com a cor da sua roupa
+
+============================================================
