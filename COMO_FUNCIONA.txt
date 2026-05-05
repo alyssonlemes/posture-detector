@@ -6,9 +6,10 @@
 O QUE O PROJETO FAZ
 --------------------
 O programa acessa a webcam em tempo real e analisa a postura
-corporal da pessoa usando inteligencia artificial. Ele detecta
-os pontos-chave do corpo (landmarks) e verifica se a postura
-esta correta ou se ha problemas.
+corporal da pessoa usando a biblioteca de visao computacional
+MediaPipe. Ela identifica os pontos-chave do corpo (landmarks)
+e o programa usa esses pontos para verificar se a postura esta
+correta ou se ha problemas.
 
 O QUE ELE DETECTA
 ------------------
@@ -16,6 +17,40 @@ O QUE ELE DETECTA
 - Ombros desnivelados
 - Cabeca projetada para frente ("tech neck")
 - Curvatura lateral da coluna
+
+COMO SAO FEITOS OS CALCULOS
+---------------------------
+O MediaPipe entrega os landmarks do corpo em coordenadas
+normalizadas. O programa converte esses pontos para pixels com
+base na largura e altura da imagem e, a partir disso, faz as
+medidas geométricas.
+
+- Inclinacao da cabeca e dos ombros:
+   o programa pega dois pontos e calcula o angulo da reta que
+   liga esses pontos em relacao ao eixo horizontal. Se o angulo
+   passar do limite definido em THRESHOLDS, ele gera alerta.
+
+- Cabeça projetada para frente:
+   o programa compara a posicao horizontal media da orelha com a
+   posicao horizontal media do ombro. Quanto maior a distancia
+   entre esses dois pontos, maior a indicacao de cabeca avancada.
+   Esse valor e normalizado pela largura da imagem e transformado
+   em percentual.
+
+- Curvatura lateral da coluna:
+   o programa calcula a diferenca horizontal entre o meio dos
+   ombros e o meio dos quadris. Se esse desvio for grande, o
+   tronco nao esta alinhado no eixo vertical.
+
+- Angulo do pescoco:
+   o programa usa tres pontos: orelha media, ombro medio e quadril
+   medio. Com esses tres pontos, ele calcula o angulo interno no
+   ombro para medir o alinhamento entre pescoco e tronco.
+
+Em resumo, a analise nao depende de palpites visuais. Ela usa as
+coordenadas dos landmarks, calcula angulos e distancias, compara
+com limiares e decide se cada parte da postura esta dentro do
+esperado.
 
 COMO LER A TELA
 ---------------
@@ -32,7 +67,8 @@ TECNOLOGIAS USADAS
 -------------------
 - Python 3.11
 - OpenCV: captura da camera e renderizacao visual
-- MediaPipe Pose: modelo de IA que detecta 33 pontos do corpo
+- MediaPipe Pose: biblioteca de visao computacional que detecta
+   33 pontos do corpo (landmarks)
 - NumPy: calculos de angulos e geometria
 
 COMO RODAR

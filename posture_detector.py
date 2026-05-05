@@ -9,12 +9,12 @@
 =============================================================
 """
 
-import cv2
-import mediapipe as mp
-import numpy as np
-import time
-import math
-import argparse
+import cv2               # OpenCV: captura vídeo/imagem e desenha elementos na tela
+import mediapipe as mp   # MediaPipe: detecta landmarks do corpo para análise de postura
+import numpy as np       # NumPy: operações numéricas e vetoriais
+import time              # Tempo: cálculo de FPS e controle temporal
+import math              # Matemática: trigonometria e cálculos de ângulos
+import argparse          # Argumentos de linha de comando
 
 # ─── Configurações ────────────────────────────────────────
 COLORS = {
